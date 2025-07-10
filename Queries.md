@@ -1,6 +1,7 @@
 Some useful SQL queries and analysis ideas to gain insights:
 
----
+
+## Using both gt and extracted 
 
 ### 1. Basic Counts - Done
 - **Total number of studies:**
@@ -105,5 +106,57 @@ WHERE gt.Experimenter != ext.Experimenter;
   GROUP BY gt.Experimenter, ext.Experimenter;
   ```
 
+--- 
+### 8. Studies with missing or empty Allocation or Experimenter
+```SQL
+SELECT * FROM Ground_truth
+WHERE Allocation IS NULL OR Allocation= ''
+   OR Experimenter IS NULL OR Experimenter = '';
+```
+
+---
 ---
 
+## On one table at a time
+
+### 9. Allocation types per year (if year is in Study name)
+If your Study field contains a year (e.g., "Smith 2020"), you can extract the year and group by it:
+- not sure if it will work but we'll see
+```SQL
+SELECT
+  SUBSTR(Study, -4, 4) AS year,
+  Allocation,
+  COUNT(*) AS count
+FROM Ground_truth
+WHERE SUBSTR(Study, -4, 4) GLOB '[0-9][0-9][0-9][0-9]'
+GROUP BY year, Allocation
+ORDER BY year, Allocation;
+```
+
+### 10. Studies with duplicate Study names
+(ig the number of study by paper)
+```sql
+SELECT Study, COUNT(*) AS occurrences
+FROM Ground_truth
+GROUP BY Study
+HAVING occurrences > 1;
+```
+
+### 11. Most common Study names
+(don't really know if this is useful or not but adding it just in case)
+``` sql 
+SELECT Study, COUNT(*) AS count
+FROM Ground_truth
+GROUP BY Study
+ORDER BY count DESC
+LIMIT 10;
+```
+
+### 12. Most frequent (Allocation, Experimenter) pairs
+See which combinations are most common:
+``` sql
+SELECT Allocation, Experimenter, COUNT(*) AS count
+FROM Ground_truth
+GROUP BY Allocation, Experimenter
+ORDER BY count DESC;
+```
