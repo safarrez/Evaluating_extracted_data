@@ -13,7 +13,7 @@ Some useful SQL queries and analysis ideas to gain insights:
   SELECT COUNT(*) FROM Extracted;
   ```
 
-### 2. Distribution of Categories - Done
+### 2. Distribution of Categories 
 - **How many studies per Allocation type?** 
 ```sql
 -- Count in ground truth
@@ -85,7 +85,6 @@ WHERE gt.Experimenter != ext.Experimenter;
 ### 6. Coverage
 - Are there studies in ground truth not present in extracted (obviously yes because we only use 20% of the data for testing and 80% for training)
   ```sql
-  --- i don't like the not in, i'll try doing an anti join
   SELECT Study FROM Ground_truth 
   WHERE Study NOT IN (SELECT Study FROM Extracted);
   ```
@@ -119,9 +118,7 @@ WHERE Allocation IS NULL OR Allocation= ''
 
 ## On one table at a time
 
-### 9. Allocation types per year (if year is in Study name)
-If your Study field contains a year (e.g., "Smith 2020"), you can extract the year and group by it:
-- not sure if it will work but we'll see
+### 9. Allocation types per year - done
 ```SQL
 SELECT
   SUBSTR(Study, -4, 4) AS year,
@@ -133,7 +130,7 @@ GROUP BY year, Allocation
 ORDER BY year, Allocation;
 ```
 
-### 10. Studies with duplicate Study names
+### 10. Studies with duplicate Study names - done
 (ig the number of study by paper)
 ```sql
 SELECT Study, COUNT(*) AS occurrences
@@ -142,8 +139,7 @@ GROUP BY Study
 HAVING occurrences > 1;
 ```
 
-### 11. Most common Study names
-(don't really know if this is useful or not but adding it just in case)
+### 11. Most common Study names - done
 ``` sql 
 SELECT Study, COUNT(*) AS count
 FROM Ground_truth
@@ -152,7 +148,7 @@ ORDER BY count DESC
 LIMIT 10;
 ```
 
-### 12. Most frequent (Allocation, Experimenter) pairs
+### 12. Most frequent (Allocation, Experimenter) pairs - done
 See which combinations are most common:
 ``` sql
 SELECT Allocation, Experimenter, COUNT(*) AS count
