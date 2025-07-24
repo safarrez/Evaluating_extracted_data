@@ -1,4 +1,29 @@
-# welcome 
+# Table Extraction Service
 
+## Overview
+This project provides two complementary services for extracting structured table fields from scientific PDF papers:
 
-objective : calculate the different metrics to make sure an llm can infact extract data from a pdf and put it in a csv
+1. **Prompt-based Extraction**: Uses a generative LLM (`llama-3.1-8b-instant` via Groq) with prompt engineering to extract key fields.
+2. **Fine-tuned Extraction**: Uses a LoRA-fine-tuned Llama-3.2-1B-Instruct model to perform end-to-end extraction.
+
+## Models
+- **Prompt Model**: `llama-3.1-8b-instant` (Groq provider)
+- **Fine-tuned Model**: `meta-llama/Llama-3.2-1B-Instruct` with LoRA adapter (saved in `./llama3-extraction-lora`)
+
+## Data Sources
+The extraction models were trained and evaluated on a dataset of 32 PDF–table pairs, including studies such as:
+- Coyne et al. (2004)
+- Vaknin‑Nusbaum & Nevo (2017)
+- Yeh & Connell (2008)
+
+PDF files reside under `data/pdfs/` and corresponding ground-truth tables under `data/tables/`. The master Excel mapping is `data/data.xlsx`.
+
+## Setup
+1. **Python & Environment**
+   - Python 3.11
+   - CUDA-capable GPU
+2. **Install Dependencies**
+   ```bash
+   python -m venv env
+   source env/bin/activate
+   pip install -r requirements.txt
