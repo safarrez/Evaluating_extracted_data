@@ -42,15 +42,16 @@ A dual-service library for extracting structured table fields from scientific PD
 | Fine-tuned (LoRA)| `meta-llama/Llama-3.2-1B-Instruct` + LoRA | `./llama3-extraction-lora`          |
 
 ## 📂 Data Sources
+[!(Data)(https://drive.google.com/drive/u/0/folders/1zurB2MibVbrhiobBe5oyvxcK6n5hdbB_)](Data)
+
 - 32 annotated PDF–table pairs
 - Example papers:
   - Coyne et al. (2004)
   - Vaknin‑Nusbaum & Nevo (2017)
   - Yeh & Connell (2008)
 - Directory structure:
-  - `data/pdfs/` — raw PDFs
-  - `data/tables/` — ground-truth tables
-  - `data/data.xlsx` — master mapping
+  - `lab/files/` — raw PDFs
+  - `data/table/` — ground-truth tables
 
 ## 🔧 Prerequisites
 - **Python** ≥ 3.11
