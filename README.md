@@ -51,7 +51,7 @@ A dual-service library for extracting structured table fields from scientific PD
   - Yeh & Connell (2008)
 - Directory structure:
   - `lab/files/` — raw PDFs
-  - `data/table/` — ground-truth tables
+  - `lab/table/` — ground-truth tables
 
 ## 🔧 Prerequisites
 - **Python** ≥ 3.11
