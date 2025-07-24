@@ -42,7 +42,7 @@ A dual-service library for extracting structured table fields from scientific PD
 | Fine-tuned (LoRA)| `meta-llama/Llama-3.2-1B-Instruct` + LoRA | `./llama3-extraction-lora`          |
 
 ## 📂 Data Sources
-[!(Data)(https://drive.google.com/drive/u/0/folders/1zurB2MibVbrhiobBe5oyvxcK6n5hdbB_)](Data)
+[Data Source: Google Drive](https://drive.google.com/drive/u/0/folders/1zurB2MibVbrhiobBe5oyvxcK6n5hdbB_)
 
 - 32 annotated PDF–table pairs
 - Example papers:
