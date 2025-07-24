@@ -1,0 +1,10 @@
+PyPDF2
+transformers
+peft
+langchain
+langchain-huggingface
+langchain-community
+openai
+groq
+accelerate
+torch
